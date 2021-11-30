@@ -1,6 +1,8 @@
 package com.example.mentoria.service
 
-interface ICreditoService {
-    fun realizarSimulacao(idProposta:Long):Long
+import com.example.mentoria.model.dto.ResultadoSimulacaoResponseDTO
+import com.example.mentoria.model.dto.SimulacaoCreditoRequestDTO
 
+interface ICreditoService {
+    fun realizarSimulacao(simulacaoCreditoRequestDTO: SimulacaoCreditoRequestDTO): ResultadoSimulacaoResponseDTO
 }

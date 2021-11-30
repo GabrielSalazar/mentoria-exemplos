@@ -1,5 +1,7 @@
 package com.example.mentoria.api
 
+import com.example.mentoria.model.dto.ResultadoSimulacaoResponseDTO
+import com.example.mentoria.model.dto.SimulacaoCreditoRequestDTO
 import com.example.mentoria.service.CreditoService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -14,10 +16,9 @@ import javax.websocket.server.PathParam
 class SimulacaoCreditoController @Autowired constructor(
     private val creditoService: CreditoService
 ){
-    @GetMapping("v1/simulacao-credito/{id}",produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun realizar(@PathVariable(name = "id") idProposta:Long): ResponseEntity<Long> {
-        val realizarSimulacao = CreditoService().realizarSimulacao(idProposta)
-        //val realizarSimulacao = creditoService.realizarSimulacao(idProposta)
-        return ResponseEntity(realizarSimulacao,HttpStatus.ACCEPTED)
+    @GetMapping("v1/simulacao-credito",produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun realizar(simulacaoCreditoRequestDTO: SimulacaoCreditoRequestDTO): ResponseEntity<ResultadoSimulacaoResponseDTO> {
+
+        return ResponseEntity(creditoService.realizarSimulacao(simulacaoCreditoRequestDTO),HttpStatus.ACCEPTED)
     }
 }
